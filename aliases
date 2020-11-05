@@ -1,0 +1,115 @@
+#===================================================================================================================================#
+#                                                                                                                                   #
+#                                                     github.com/tagirov/dotfiles                                                   #
+#                                                                                                                                   #
+#===================================================================================================================================#
+
+
+#---------------------------------------------------------------Scripts--------------------------------------------------------------
+                                                                                                                             alias  \
+    ex='~/shell/ex'                                                                                                              \
+    pk='~/shell/pk'                                                                                                              \
+    lines='~/shell/lines'
+
+#---------------------------------------------------------------Cargo----------------------------------------------------------------
+                                                                                                                             alias  \
+    run='cargo run'                                                                                                                 \
+    che='cargo check'                                                                                                               \
+    br='~/.cargo/bin/broot'                                                                                                         \
+    eva='~/.cargo/bin/eva'                                                                                                          
+
+#---------------------------------------------------------------Dirs-----------------------------------------------------------------
+                                                                                                                             alias  \
+    code='cd ~/code/'                                                                                                               \
+    cfg='cd ~/.config/'                                                                                                             \
+    dl='cd ~/downloads/'                                                                                                            \
+    shell='cd ~/shell/'                                                                                                             \
+                                                                                                                                    \
+    /='cd /'                                                                                                                        \
+    ~='cd ~'                                                                                                                        \
+    .='cd ../'                                                                                                                      \
+    ..='cd ../../'                                                                                                                  \
+    .3='cd ../../../'                                                                                                               \
+    .4='cd ../../../../'                                                                                                            \
+    .5='cd ../../../../../'
+
+#---------------------------------------------------------------Pacman---------------------------------------------------------------
+                                                                                                                             alias  \
+    pacman='pacman --color=always'                                                                                                  \
+    u='sudo pacman -Syu'                                                                                                            \
+    ua='yay -Syu'                                                                                                                   \
+    p='sudo pacman -Syu && sudo pacman -S'                                                                                          \
+    a='sudo pacman -Syu && yay -S'                                                                                                  \
+    del='sudo pacman -Rs'                                                                                                           \
+    pas='pacman -Ss'                                                                                                                \
+    aus='yay -Ss'                                                                                                                   \
+    clean='sudo pacman -Sc'                                                                                                         \
+    deepclean='sudo pacman -Scc'                                                                                                    \
+    lostp='pacman -Qqdt'                                                                                                            \
+    listp="comm -23 <(pacman -Qqe | sort) <({ pacman -Qqg base-devel; expac -l '\n' '%E' base; } | sort -u )"
+
+#---------------------------------------------------------------Misc-----------------------------------------------------------------
+                                                                                                                             alias  \
+    sudo='sudo '                                                                                                                    \
+    ka='killall'                                                                                                                    \
+    x='emacs &'                                                                                                                     \
+    f='fff'                                                                                                                         \
+    index='kak ~/misc/startpage/index.html'                                                                                         \
+    ladi='kak ~/.config/kak/colors/ladies-night.kak'                                                                                \
+    cmatrix='cmatrix -b -u 12 -C cyan'                                                                                              \
+    zshe='v ~/.aliases'                                                                                                             \
+    zshs='source ~/.zshrc'                                                                                                          \
+    bt='bat'                                                                                                                        \
+    grep='rg'                                                                                                                       \
+    c='clear'                                                                                                                       \
+    udiskie='udiskie -qN'                                                                                                           \
+    v='kak'                                                                                                                         \
+    hy='fc -lDi'                                                                                                                    \
+    gc='git clone'                                                                                                                  \
+    diff='diff --color=always'                                                                                                      \
+    df='df -h'                                                                                                                      \
+    du='du -hs * | sort -h'                                                                                                         \
+    class='xprop | rg CLASS'                                                                                                        \
+    md='mkdir'                                                                                                                      \
+    t='touch'                                                                                                                       \
+    nw='newsboat'                                                                                                                   \
+    nwe='v ~/.newsboat/urls'                                                                                                        \
+    speed='speedtest-cli'                                                                                                           \
+    h='htop'                                                                                                                        \
+    now='date +"%n [ %R ]     %A     %D"'                                                                                           \
+    b='lsblk'                                                                                                                       \
+    rmd='sudo rm -R'                                                                                                                \
+    kk='kak ~/.config/kak/kakrc'                                                                                                    \
+    e='exa -l --time-style=long-iso --group-directories-first'                                                                      \
+    ee='exa -la --time-style=long-iso --group-directories-first'                                                                    \
+    e.='exa -a | rg "^\."'                                                                                                          \
+    mount='mount | column -t'                                                                                                       \
+                                                                                                                                    \
+    mv='mv -iv'                                                                                                                     \
+    cp='cp -iv'                                                                                                                     \
+    ln='ln -iv'                                                                                                                     \
+                                                                                                                                    \
+    rm='rm -i -preserve-root'                                                                                                       \
+                                                                                                                                    \
+    chown='chown -preserve-root'                                                                                                    \
+    chmod='chmod -preserve-root'                                                                                                    \
+    chgrp='chgrp -preserve-root'                                                                                                    \
+                                                                                                                                    \
+    fping='ping -c 100 -s .2'                                                                                                       \
+                                                                                                                                    \
+    ports='netstat -tulanp'                                                                                                         \
+    wget='wget -c'                                                                                                                  \
+    wgetsite='wget -rkx "$1"'
+
+    mdc() {
+    mkdir $1 && cd $1
+    }
+
+#---------------------------------------------------------------YouTube--------------------------------------------------------------
+                                                                                                                             alias  \
+                                                                                                                                    \
+    ym='youtube-dl --ignore-errors -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 -o "./%(title)s.%(ext)s"'      \
+    yv='youtube-dl --ignore-errors -o "./%(title)s.%(ext)s"'
+
+
+#====================================================================================================================================
