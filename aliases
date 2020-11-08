@@ -111,5 +111,36 @@
     ym='youtube-dl --ignore-errors -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 -o "./%(title)s.%(ext)s"'      \
     yv='youtube-dl --ignore-errors -o "./%(title)s.%(ext)s"'
 
+#---------------------------------------------------------------Git------------------------------------------------------------------
+                                                                                                                             alias  \
+    gc='git clone'                                                                                                                  \
+    gi='git init'                                                                                                                   \
+    ga='git add'                                                                                                                    \
+    gaa='git add --all'                                                                                                             \
+    gp='git push'                                                                                                                   \
+    gpl='git pull'                                                                                                                  \
+    gpu='git push -u origin main'                                                                                                   \
+    gf='git fetch'                                                                                                                  \
+    gs='git status'                                                                                                                 \
+    gl='git log'
+
+    gra() {
+        git remote add origin https://github.com/tagirov/"$1".git
+    }
+
+    gcj() {
+        git clone "$1"
+        cd "$2"
+    }
+
+    gcm() {
+        git commit -m "$1"
+    }
+
+    gac() {
+        git add --all
+        git commit -m "$*"
+    }
+
 
 #====================================================================================================================================
