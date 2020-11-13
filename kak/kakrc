@@ -1,12 +1,20 @@
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
 
+#----------------------- appearance ---------------------------
+
 colorscheme ladies-night
 #colorscheme gruvbox
 
-add-highlighter global/ line '%val{cursor_line}' "default,rgba:383c4a83"
+add-highlighter global/ line '%val{cursor_line}'              \
+  "default,rgba:383c4a83"
 
 set-option global ui_options ncurses_assistant=off
 
+add-highlighter global/ number-lines
+add-highlighter global/ wrap
+add-highlighter global/ show-matching
+
+#------------------------- plugins ----------------------------
 
 #plug "occivink/kakoune-vertical-selection"
 plug "occivink/kakoune-sudo-write" 
@@ -18,39 +26,37 @@ plug "alexherbo2/auto-pairs.kak"
 #plug "alexherbo2/manual-indent.kak"
 
 require-module auto-pairs
-auto-pairs-enable
+               auto-pairs-enable
 
-#---------------------------------------------------------------User-----------------------------------------------------------------
+#-------------------------- user ------------------------------
 
-map -docstring "Copy to clipboard" global user y '<a-|>xclip -i -selection clipboard<ret>'
-map -docstring "Paste from clipboard" global user p '!xclip -selection clipboard -o<ret>'
+map -docstring "Copy to clipboard"              global user y \
+  '<a-|>xclip -i -selection clipboard<ret>'
+map -docstring "Paste from clipboard"           global user p \
+  '!xclip -selection clipboard -o<ret>'
+map -docstring "Vertical selection Down"        global user v \
+  ':vertical-selection-down<ret>'
+map -docstring "Vertical selection Up"          global user b \
+  ':vertical-selection-up<ret>'
+map -docstring "Vertical selection Up and Down" global user V \
+  ':vertical-selection-up-and-down<ret>'
 
-map -docstring "Vertical selection Down" global user v ':vertical-selection-down<ret>'
-map -docstring "Vertical selection Up" global user b ':vertical-selection-up<ret>'
-map -docstring "Vertical selection Up and Down" global user V ':vertical-selection-up-and-down<ret>'
+#--------------------------- lsp ------------------------------
 
-# *** RUST ***
-map -docstring "Enable hover lsp-highlights" global user q ':lsp-auto-hover-enable<ret>' 
-map -docstring "Disable hover lsp-highlights" global user Q ':lsp-auto-hover-disable<ret>' 
-map -docstring "lsp-formatting" global user f ':lsp-formatting<ret>' 
-
-#------------------------------------------------------------------------------------------------------------------------------------
-
-map global normal '#' :comment-line<ret>
-#map global normal '<c-w>' :q!<ret>
-#map global insert '<c-w>' <esc>:q!<ret>
-
-add-highlighter global/ number-lines
-add-highlighter global/ wrap
-add-highlighter global/ show-matching
-
-set global tabstop 4
+map -docstring "Enable hover lsp-highlights"    global user q \
+  ':lsp-auto-hover-enable<ret>' 
+map -docstring "Disable hover lsp-highlights"   global user Q \
+  ':lsp-auto-hover-disable<ret>'
+map -docstring "lsp-formatting"                 global user f \
+  ':lsp-formatting<ret>' 
 
 eval %sh{kak-lsp --kakoune -s $kak_session}
 hook global WinSetOption filetype=(rust) %{
         lsp-enable-window
 }
-#---------------------------------------------------------------Colemak--------------------------------------------------------------
+
+#------------------------- colemak ----------------------------
+
 map global normal n h 
 map global normal e j
 map global normal i k
@@ -80,9 +86,18 @@ map global goto O L
 map global normal <a-l> <a-i>
 map global normal <a-k> <a-n>
 
-#---------------------------------------------------------------------------------------------------------------------------------------
-# Live reload
+#-------------------------- misc ------------------------------
+
+### Live reload
 set-option global autoreload yes
 
- # Fix LiveReload
+### Live reload method
 set-option global writemethod replace
+
+map global normal '#' :comment-line<ret>
+#map global normal '<c-w>' :q!<ret>
+#map global insert '<c-w>' <esc>:q!<ret>
+
+set global tabstop 4
+
+#--------------------------------------------------------------
