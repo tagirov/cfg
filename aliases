@@ -63,7 +63,7 @@
 #-------------------------- pacman ---------------------------
                                                        alias \
     pacman='pacman --color=always'                           \
-    u='sudo pacman -Syu && yay -Syu'                         \
+    u='yay -Syu'                                             \
     p='sudo pacman -Syu && sudo pacman -S'                   \
     a='sudo pacman -Syu && yay -S'                           \
     del='sudo pacman -Rs'                                    \
