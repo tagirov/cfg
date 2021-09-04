@@ -1,32 +1,41 @@
+#                    gh/tagirov/dotfiles
+#--------------------------------------------------------------
+
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
 
 #----------------------- appearance ---------------------------
 
 colorscheme ladies-night
-#colorscheme gruvbox
+# colorscheme default
+# colorscheme gruvbox
+# colorscheme snow-light
 
-add-highlighter global/ line '%val{cursor_line}'              \
-  "default,rgba:383c4a83"
+#add-highlighter global/ line '%val{cursor_line}'              \
+# "default,rgba:383c4a83"
 
 set-option global ui_options ncurses_assistant=off
 
-add-highlighter global/ number-lines
+add-highlighter global/ number-lines -hlcursor -separator '|  '
 add-highlighter global/ wrap
 add-highlighter global/ show-matching
 
 #------------------------- plugins ----------------------------
 
-#plug "occivink/kakoune-vertical-selection"
-plug "occivink/kakoune-sudo-write" 
-#plug "andreyorst/fzf.kak"
-plug "alexherbo2/prelude.kak"
-plug "alexherbo2/auto-pairs.kak"
-#plug "danr/kakoune-easymotion"
-#plug "alexherbo2/surround.kak"
-#plug "alexherbo2/manual-indent.kak"
+# plug "occivink/kakoune-vertical-selection"
+# plug "occivink/kakoune-sudo-write" 
+# plug "andreyorst/fzf.kak"
+# plug "alexherbo2/prelude.kak"
+# plug "alexherbo2/auto-pairs.kak"
+plug "alexherbo2/palette.kak"
+# plug "danr/kakoune-easymotion"
+# plug "alexherbo2/surround.kak"
+# plug "alexherbo2/manual-indent.kak"
 
-require-module auto-pairs
-               auto-pairs-enable
+# require-module auto-pairs
+               # auto-pairs-enable
+               
+require-module palette
+               palette-enable
 
 #-------------------------- user ------------------------------
 
@@ -48,12 +57,23 @@ map -docstring "Enable hover lsp-highlights"    global user q \
 map -docstring "Disable hover lsp-highlights"   global user Q \
   ':lsp-auto-hover-disable<ret>'
 map -docstring "lsp-formatting"                 global user f \
-  ':lsp-formatting<ret>' 
+  ':lsp-formatting<ret>'
+map -docstring "Disable LSP"                    global user d \
+  ':lsp-disable-window<ret>'
+map -docstring "Enable LSP"                     global user D \
+  ':lsp-enable-window<ret>'
 
 eval %sh{kak-lsp --kakoune -s $kak_session}
-hook global WinSetOption filetype=(rust) %{
+hook global WinSetOption filetype=(rust|javascript|bash|json|svelte|c) %{
         lsp-enable-window
 }
+
+hook global WinSetOption filetype=.* %{
+        lsp-enable-window
+}
+
+#eval %sh{kak-lsp --kakoune -s $kak_session}
+lsp-enable
 
 #------------------------- colemak ----------------------------
 
@@ -86,6 +106,32 @@ map global goto O L
 map global normal <a-l> <a-i>
 map global normal <a-k> <a-n>
 
+#------------------------ turbo nav ---------------------------
+
+map global insert <c-left> '<esc>b;i'
+map global insert <c-right> '<esc>w;i'
+map global insert <c-up> '<esc>5k;'
+map global insert <c-down> '<esc>5j;'
+
+map global normal <c-left> '<esc>b;'
+map global normal <c-right> '<esc>w;'
+map global normal <c-up> '<esc>5k;'
+map global normal <c-down> '<esc>5j;'
+
+map global insert <c-s-left> '<esc>B;i'
+map global insert <c-s-right> '<esc>W;i'
+map global insert <c-s-up> '<esc>5K;'
+map global insert <c-s-down> '<esc>5J;'
+
+map global normal <c-s-left> '<esc>B'
+map global normal <c-s-right> '<esc>W'
+map global normal <c-s-up> '<esc>5K'
+map global normal <c-s-down> '<esc>5J'
+
+#------------------------- remap  -----------------------------
+
+# map global normal t '<esc>t;'
+
 #-------------------------- misc ------------------------------
 
 ### Live reload
@@ -98,6 +144,21 @@ map global normal '#' :comment-line<ret>
 #map global normal '<c-w>' :q!<ret>
 #map global insert '<c-w>' <esc>:q!<ret>
 
-set global tabstop 4
+set global tabstop 2
+set global disabled_hooks .*-indent # Disable auto-indent
 
 #--------------------------------------------------------------
+
+# map global normal <a-lt> 'dkglplGl'
+# map global normal <lt> 'kgl<a-j>lGl'
+
+# define-command -hidden -override move-selection-down %{
+#     exec d j g l p l G L
+# }
+
+# map global normal <a-gt> ': move-selection-down<ret>'
+# define-command -hidden -override move-line-down %{
+#     exec <a-x> d g l p <a-j> l G l 
+# }
+
+# map global normal <gt> ': move-line-down<ret>'
