@@ -1,3 +1,51 @@
+#                    gh/tagirov/dotfiles
+#--------------------------------------------------------------
+
+
+    alias zshe='kak ~/.aliases'                                    
+    alias zshs='source ~/.zshrc'                                   
+
+    alias sudo='sudo ' # Is a hack that allows to your 
+                       # aliases to work in sudo mode
+
+    
+#--------------------------- sys ------------------------------
+                                                        alias \
+    mv='mv -iv'                                               \
+    cp='cp -iv'                                               \
+    ln='ln -iv'                                               \
+                                                              \
+    chown='chown --preserve-root'                             \
+    chmod='chmod --preserve-root'                             \
+    chgrp='chgrp --preserve-root'                             \ 
+                                                              \
+    rm='rm --preserve-root'                                   \
+    rd='rm -rf'                                               \
+                                                              \
+    t='touch'                                                 \
+    h='htop'                                                  \
+    l='lsblk'                                                 \
+                                                              \
+    md='mkdir -p'                                             \
+    ka='killall'                                              \
+    hy='fc -lDi'                                              \
+    df='df -h'                                                \
+    du='du -hs * | sort -h'                                   \
+    now='date +"%n [ %R ]     %A     %D%n"'                   \
+    diff='diff --color=always'                                \
+    class='xprop | rg CLASS'                                  \
+    mount='mount | column -t'                                 
+                                                            
+
+#--------------------------- cfg ------------------------------
+                                                        alias \
+    cfg='cd ~/.config/'                                       \
+                                                              \   
+    kk='kak ~/.config/kak/kakrc'                              \
+    ladi='kak ~/.config/kak/colors/ladies-night.kak'          \
+    swayconf='kak ~/.config/sway/config'                      
+
+
 #--------------------------- git ------------------------------
                                                         alias \
     gc='git clone'                                            \
@@ -18,7 +66,7 @@
 
     gcj() {
         git clone "$1"
-        cd "$2"
+        cd ${1##*/}
     }
     gcm() {
         git commit -m "$1"
@@ -28,116 +76,118 @@
         git add --all
         git commit -m "$*"
     }
+ 
+                                  
+#-------------------------- dirs ------------------------------
+                                                        alias \
+    c='cd ~/code/'                                            \
+    g='cd ~/code/repo/'                                       \
+    dn='cd ~/code/deno/'                                      \
+    pg='cd ~/code/play/'                                      \
+    dl='cd ~/down/'                                           \
+    yew='cd ~/code/yew/src/'                                  \
+    bins='cd ~/bins/'                                         \
+    bots='cd ~/code/bots/'                                    \
+    deps='kak ~/misc/deps/'                                   \
+    screen='cd ~/pics/screen/'                                \
+    voyager='/run/media/alex/voyager/'                        \
+                                                              \
+    /='cd /'                                                  \
+    ~='cd ~'                                                  \
+    .='cd ../'                                                \
+    ..='cd ../../'                                            \
+    .3='cd ../../../'                                         \
+    .4='cd ../../../../'                                      \
+    .5='cd ../../../../../'                                   \
+                                                              \
+    e='ls -lhG --group-directories-first                      \
+      --time-style=long-iso'                                  \
+    ea='e -aA'                                                \
+    ee='e -d .*'                                              \
+                                                              \
+    ls='ls --color=always'                                   
 
-#------------------------- scripts ---------------------------
-                                                       alias \
-    ex='~/shell/ex'                                          \
-    pk='~/shell/pk'                                          \
-    pash='~/shell/pash'                                      \
-    lines='~/shell/lines'                                    \
-    backup='~/shell/backup'
 
-#-------------------------- cargo ----------------------------
-                                                       alias \
-    run='cargo run'                                          \
-    che='cargo check'                                        \
-    br='~/.cargo/bin/broot'                                  \
-    eva='~/.cargo/bin/eva'                                   
+#-------------------------- memos -----------------------------
+                                                        alias \
+    memoreg='bat ~/misc/memo/regexp'                          \
+    memofff='bat ~/misc/memo/fff'                             \
+    memobackup='bat ~/misc/memo/backup'                       \
+    memochrome='bat ~/misc/memo/chromekeys'                  
 
-#-------------------------- dirs -----------------------------
-                                                       alias \
-    code='cd ~/code/'                                        \
-    cfg='cd ~/.config/'                                      \
-    dl='cd ~/downloads/'                                     \
-    shell='cd ~/shell/'                                      \
-    screen='cd ~/pictures/screen/'                           \
-                                                             \
-    /='cd /'                                                 \
-    ~='cd ~'                                                 \
-    .='cd ../'                                               \
-    ..='cd ../../'                                           \
-    .3='cd ../../../'                                        \
-    .4='cd ../../../../'                                     \
-    .5='cd ../../../../../'
 
-#-------------------------- pacman ---------------------------
-                                                       alias \
-    pacman='pacman --color=always'                           \
-    u='yay -Syu'                                             \
-    p='sudo pacman -Syu && sudo pacman -S'                   \
-    a='sudo pacman -Syu && yay -S'                           \
-    del='sudo pacman -Rs'                                    \
-    pas='pacman -Ss'                                         \
-    aus='yay -Ss'                                            \
-    clean='sudo pacman -Sc'                                  \
-    deepclean='sudo pacman -Scc'                             \
-    lostp='pacman -Qqdt'                                     \
-    listp="comm -23 <(pacman -Qqe | sort) <({ pacman -Qqg    \
-      base-devel; expac -l '\n' '%E' base; } | sort -u )"
+#-------------------------- pacman ----------------------------
+                                                        alias \
+    pacman='pacman --color=always'                            \
+                                                              \
+    u='doas pacman -Syu'                                      \
+    p='doas pacman -S'                                        \
+    a='paru -S'                                               \
+    pas='pacman -Ss'                                          \
+    aus='paru -Ss'                                            \
+    del='doas pacman -Rs'                                     \
+    delc='doas pacman -Rsn'                                   \
+    lostp='pacman -Qqdt'                                      \
+    listp="comm -23 <(pacman -Qqe | sort) <({ pacman -Qqg     \
+      base-devel; expac -l '\n' '%E' base; } | sort -u )"     \
+    clean='doas pacman -Sc'                                   \
+    deepclean='doas pacman -Scc'                             
 
-#-------------------------- misc -----------------------------
-                                                       alias \
-    rm='rm --preserve-root'                                  \
-    sudo='sudo '                                             \
-    rmd='sudo rm -R'                                         \
-    drop='dragon-drag-and-drop'                              \
-    ka='killall'                                             \
-    x='emacs &'                                              \
-    f='fff'                                                  \
-    ladi='kak ~/.config/kak/colors/ladies-night.kak'         \
-    cmatrix='cmatrix -b -u 12 -C cyan'                       \
-    zshe='v ~/.aliases'                                      \
-    zshs='source ~/.zshrc'                                   \
-    bt='bat'                                                 \
-    grep='rg'                                                \
-    c='clear'                                                \
-    udiskie='udiskie -qN'                                    \
-    v='kak'                                                  \
-    hy='fc -lDi'                                             \
-    diff='diff --color=always'                               \
-    df='df -h'                                               \
-    du='du -hs * | sort -h'                                  \
-    class='xprop | rg CLASS'                                 \
-    md='mkdir'                                               \
-    t='touch'                                                \
-    nw='newsboat'                                            \
-    nwe='v ~/.newsboat/urls'                                 \
-    speed='speedtest-cli'                                    \
-    h='htop'                                                 \
-    now='date +"%n [ %R ]     %A     %D"'                    \
-    b='lsblk'                                                \
-    kk='v ~/.config/kak/kakrc'                               \
-    e='exa -l --time-style=long-iso                          \
-       --group-directories-first'                            \
-    ee='exa -la --time-style=long-iso                        \
-       --group-directories-first'                            \
-    e.='exa -a | rg "^\."'                                   \
-    mount='mount | column -t'                                \
-                                                             \
-    mv='mv -iv'                                              \
-    cp='cp -iv'                                              \
-    ln='ln -iv'                                              \
-                                                             \
-    chown='chown --preserve-root'                            \
-    chmod='chmod --preserve-root'                            \
-    chgrp='chgrp --preserve-root'                            \
-                                                             \
-    fping='ping -c 100 -s .2'                                \
-                                                             \
-    ports='netstat -tulanp'                                  \
-    wget='wget -c'                                           \
-    wgetsite='wget -rkx "$1"'
 
-    mdj() {  
+#-------------------------- misc ------------------------------
+                                                        alias \
+    v='kak'                                                   \
+    z='zathura'                                               \
+    b='bat'                                                   \
+    x='emacs &'                                               \
+    f='fff'                                                   \
+    ca='cargo'                                                \
+    br='broot'                                                \
+    dr='deno run'                                             \
+    2b='xclip -sel c'                                         \
+    nw='newsboat'                                             \
+    mc='mc -b'                                                \
+    hf='hfetch'                                               \
+    nwe='kak ~/.newsboat/urls'                                \
+    wget='wget -c'                                            \
+    drop='dragon-drag-and-drop'                               \
+    fping='ping -c 100 -s .2'                                 \
+    index='kak ~/misc/startpage.html'                         \
+    ports='netstat -tulanp'                                   \
+    speed='speedtest-cli'                                     \
+    wgetsite='wget -rkx "$1"'                                 \
+    cmatrix='cmatrix -b -u 12 -C cyan'                        \
+    udiskie='udiskie -qN'                                    
+
+
+#--------------------------- fn -------------------------------
+
+    color() {
+         grim -g "$(slurp -p)" -t ppm - | convert - -format   \
+         '%[pixel:p{0,0}]' txt:-
+    }
+                                                              
+    mdj() {
         mkdir $1 && cd $1
     }
 
-#------------------------- youtube ---------------------------
-                                                       alias \
-    ym="youtube-dl --ignore-errors -f bestaudio              \
-      --extract-audio --audio-format mp3                     \
-      --audio-quality 0 -o './%(title)s.%(ext)s'"            \
-    yv="youtube-dl --ignore-errors -o                        \
+
+#------------------------- youtube ----------------------------
+                                                        alias \
+    ym="youtube-dl --ignore-errors -f bestaudio               \
+      --extract-audio --audio-format mp3                      \
+      --audio-quality 0 -o './%(title)s.%(ext)s'"             \
+    yv="youtube-dl --ignore-errors -o                         \
       './%(title)s.%(ext)s'"
 
-#-------------------------------------------------------------
+
+#--------------------------------------------------------------
+
+
+
+
+alias ws='wasm-pack build --target web --out-name wasm \
+--out-dir ./static && miniserve ./static --index index.html'
+
+alias wb='wasm-pack build --target web --out-name wasm \
+--out-dir ./static'
