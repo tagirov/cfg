@@ -13,7 +13,7 @@ colorscheme ladies-night
 #add-highlighter global/ line '%val{cursor_line}'              \
 # "default,rgba:383c4a83"
 
-set-option global ui_options ncurses_assistant=off
+set-option global ui_options terminal_assistant=off
 
 add-highlighter global/ number-lines -hlcursor -separator '|  '
 add-highlighter global/ wrap
