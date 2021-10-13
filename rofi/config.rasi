@@ -1,4 +1,12 @@
-rofi.modi:run
-rofi.lines:17
-rofi.font:ClearSansMedium 11
-rofi.theme:slate
+//                  github.com/tagirov/cfg
+//-------------------------------------------------------------
+
+
+configuration {
+
+  modi:  "run";
+  font:  "ClearSansMedium 11";
+	
+}
+
+@theme "slate_mod"
