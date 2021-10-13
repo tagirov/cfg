@@ -1,0 +1,4 @@
+rofi.modi:run
+rofi.lines:17
+rofi.font:ClearSansMedium 11
+rofi.theme:slate

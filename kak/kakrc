@@ -1,4 +1,4 @@
-#                    gh/tagirov/dotfiles
+#                   github.com/tagirov/cfg
 #--------------------------------------------------------------
 
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
@@ -6,7 +6,6 @@ source "%val{config}/plugins/plug.kak/rc/plug.kak"
 #----------------------- appearance ---------------------------
 
 colorscheme ladies-night
-# colorscheme default
 # colorscheme gruvbox
 # colorscheme snow-light
 
@@ -135,7 +134,7 @@ map global normal <c-s-down> '<esc>5J'
 #-------------------------- misc ------------------------------
 
 ### Live reload
-set-option global autoreload yes
+# set-option global autoreload yes
 
 ### Live reload method
 set-option global writemethod replace

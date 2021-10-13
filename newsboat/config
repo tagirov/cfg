@@ -1,3 +1,6 @@
+#                   github.com/tagirov/cfg
+#--------------------------------------------------------------
+
 auto-reload yes
 browser firefox
 confirm-exit no
